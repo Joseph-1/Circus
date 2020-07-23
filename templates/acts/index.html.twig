@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acts index{% endblock %}
+
+{% block body %}
+    <h1>Acts index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for act in acts %}
+            <tr>
+                <td><a href="{{ path('acts_show', {'id': act.id}) }}"><img width="300px" height="300px" src="{{ act.photo }}" alt=""></a></td>
+                <td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('acts_edit', {'id': act.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('acts_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}
