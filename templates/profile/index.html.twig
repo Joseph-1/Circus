@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h3>{{ app.user.lastname }} {{ app.user.name }}</h3>
+    <p>Email : {{ app.user.email }}</p>
+    <p>Tél : {{ app.user.telnumber }}</p>
+    <div>
+        <a href="{{ path('profile_edit', {'id': app.user.id}) }}">Modifier</a>
+    {#
+    <a class="uk-button uk-button-danger uk-button-large" href="{{ path('user_delete', {'id': app.user.id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer votre compte ?')">Supprimer mon compte</a>
+    #}
+</div>
+{% endblock %}
